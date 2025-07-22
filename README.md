@@ -23,7 +23,7 @@ pip install pandas
 1. Place input files (`Dish_clean.csv` and `Menu-clean.csv`) in the `cleaned_data_a/` folder.
 2. Run the script:
 ```sh
-python python_cleaning.py
+python3 python_cleaning.py
 ```
 3. Check the cleaned files in the `cleaned_data_b/` folder.
 
