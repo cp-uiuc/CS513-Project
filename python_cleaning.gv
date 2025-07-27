@@ -1,0 +1,38 @@
+digraph Workflow {
+rankdir=LR
+fontname=Courier; fontsize=18; labelloc=t
+label=PythonWorkflow
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; color=white
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Courier]
+load_dish_csv
+clean_normalized_dish_name
+update_is_soup_column
+save_dish_csv
+load_csv_menu
+clean_menu_dates
+save_csv_menu
+edge[fontname=Helvetica]
+load_dish_csv -> clean_normalized_dish_name [label=dish_df]
+clean_normalized_dish_name -> update_is_soup_column [label=dish_df_clean]
+update_is_soup_column -> save_dish_csv [label=dish_df_clean_with_is_soup]
+load_csv_menu -> clean_menu_dates [label=menu_df]
+clean_menu_dates -> save_csv_menu [label=menu_df_clean]
+}}
+subgraph cluster_input_ports_group_outer { label=""; color=white
+subgraph cluster_input_ports_group_inner { label=""; color=white
+node[shape=circle style=filled fillcolor="#FFFFFF" peripheries=1 fontname=Courier width=0.2]
+dish_in_input_port [label=""]
+menu_in_input_port [label=""]
+soup_terms_input_port [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; color=white
+subgraph cluster_output_ports_group_inner { label=""; color=white
+node[shape=circle style=filled fillcolor="#FFFFFF" peripheries=1 fontname=Courier width=0.2]
+}}
+edge[fontname=Helvetica]
+dish_in_input_port -> load_dish_csv [label=dish_in]
+soup_terms_input_port -> update_is_soup_column [label=soup_terms]
+menu_in_input_port -> load_csv_menu [label=menu_in]
+edge[fontname=Helvetica]
+}
