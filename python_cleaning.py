@@ -100,22 +100,23 @@ def process_dish_file(in_path: str, out_path: str, soup_terms: list[str]):
 
     # @begin clean_normalized_dish_name
     # @in dish_df
-    # @out dish_df_clean
+    # @out dish_df_clean_1
     df = clean_normalized_dish_name(df)
     # @end clean_normalized_dish_name
 
 
     # @begin update_is_soup_column
-    # @in dish_df_clean
+    # @in dish_df_clean_1
     # @param soup_terms
-    # @out dish_df_clean_with_is_soup
+    # @out dish_df_clean_2
     df = update_is_soup_column(df, soup_terms)
     # @end update_is_soup_column
 
     print_dish_stats("Dish (Post-Clean)", df)
 
     # @begin save_dish_csv
-    # @in dish_df_clean_with_is_soup
+    # @in dish_df_clean_2
+    # @out dish_out
     df.to_csv(out_path, index=False)
     # @end save_dish_csv
 
@@ -140,6 +141,7 @@ def process_menu_file(in_path: str, out_path: str):
     
     # @begin save_csv_menu
     # @in menu_df_clean
+    # @out menu_out
     df.to_csv(out_path, index=False)
     # @end save_csv_menu
 
